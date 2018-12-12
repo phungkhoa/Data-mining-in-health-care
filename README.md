@@ -1,8 +1,13 @@
-Project: Data Mining in Medicine healthcare
-Lecturer: Prof. Andersson 
-Subject: Compulsory Elective Object
-Language: R
-IDLE: RStudio
+Project: 
+  - Data Mining in Medicine healthcare
+Lecturer: 
+  - Prof. Andersson 
+Subject: 
+  - Compulsory Elective Object
+Language: 
+  - R
+IDLE: 
+  - RStudio
 Version: 1.0
 
 Authors:
