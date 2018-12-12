@@ -7,6 +7,7 @@ Version: 1.0
 
 Authors:
   Phung Nguyen Anh Khoa - VGU
+  
   Nguyen Dao Thuy Tien - VGU
   
 Description:
