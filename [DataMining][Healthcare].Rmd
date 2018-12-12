@@ -1,0 +1,67 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Libraries
+```{r echo=FALSE, results='hide',message=FALSE}
+library(naivebayes)
+library(dplyr)
+library(ggplot2)
+library(psych) 
+```
+
+```{r echo=FALSE, results='hide',message=FALSE}
+# Data
+#data <- read.csv(file.choose(), header = T)
+data <- read.csv(file="C:/Users/Khoa/Documents/Elective/naive_bayes/binary.csv", header = T)
+str(data) 
+xtabs(~admit+rank, data = data) 
+data$rank <- as.factor(data$rank)
+data$admit <- as.factor(data$admit)
+```
+
+```{r echo=FALSE, results='hide',message=FALSE}
+# Visualization
+pairs.panels(data[-1]) 
+
+data %>%
+  ggplot(aes(x=admit, y=gpa, fill = admit)) + 
+  geom_boxplot() + 
+  ggtitle("Box Plot") 
+
+data %>% 
+  ggplot(aes(x=gpa, fill = admit)) + 
+  geom_density(alpha=0.8, color= 'black') + 
+  ggtitle("Density Plot") 
+
+
+set.seed(1234) 
+ind <- sample(2, nrow(data), replace = T, prob = c(0.8, 0.2)) 
+train <- data[ind == 1,] 
+test <- data[ind == 2,] 
+```
+
+```{r echo=FALSE, results='hide',message=FALSE}
+# Naive Bayes Model
+model <- naive_bayes(admit ~ ., data = train, usekernel = T) 
+model 
+plot(model)
+```
+
+```{r echo=FALSE, results='hide',message=FALSE}
+# Predict
+p <- predict(model, train, type = 'prob') 
+head(cbind(p, train)) 
+
+p1 <- predict(model, train) 
+
+(tab1 <- table(p1, train$admit)) 
+
+1 - sum(diag(tab1)) / sum(tab1) 
+
+
+p2 <- predict(model, test)
+(tab2 <- table(p2, test$admit))
+1 - sum(diag(tab2)) / sum(tab2)
+```

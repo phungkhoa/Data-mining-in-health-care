@@ -6,6 +6,8 @@ library(psych) # https://www.rdocumentation.org/packages/psych/versions/1.0-17
 #https://homepage.divms.uiowa.edu/~luke/classes/STAT4580/histdens.html#density-plots
 #https://www.mathsisfun.com/data/standard-deviation.html
 #https://www.rdocumentation.org/packages/raster/versions/2.8-4/topics/predict
+#https://www.slideshare.net/hadooring/data-discretization
+#https://paginas.fe.up.pt/~ec/files_1112/week_03_Data_Preparation.pdf
 
 # Data
 data <- read.csv(file.choose(), header = T) # input data file
